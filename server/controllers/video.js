@@ -5,7 +5,7 @@ export const addVideo = async (req, res) => {
     try{
         const { title, description, videoUrl, thumbnailUrl } = req.body;
         console.log(req);
-        const video = new Video({ title, description, videoUrl, thumbnailUrl, createdBy: req.user.id });
+        const video = new Video({ title, description, videoUrl, thumbnailUrl, createdBy: req.params.id , views: 0});
         await video.save();
         res.status(201).send();
     }
