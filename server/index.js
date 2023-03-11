@@ -22,15 +22,7 @@ app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan('common'));
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, "public/assets");
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname);
-    },
-  });
-const upload = multer({ storage });
+
 
 
 app.use("/api/v1/auth", authRoutes);
