@@ -8,8 +8,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import authRoutes from './routes/auth.js';
-import videoRoutes from './routes/videoUpload.js';
-
+import videoRoutes from './routes/video.js';
+import commentRoutes from './routes/comments.js'
 
 
 
@@ -28,7 +28,8 @@ app.use(morgan('common'));
 
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/upload", videoRoutes);
+app.use("/api/v1/video", videoRoutes);
+app.use("/api/v1/comment", commentRoutes);
 
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,

@@ -3,9 +3,9 @@ import Video from '../models/Video.js';
 
 export const addVideo = async (req, res) => {
     try{
+        console.log(req.user);
         const { title, description, videoUrl, thumbnailUrl } = req.body;
-        console.log(req);
-        const video = new Video({ title, description, videoUrl, thumbnailUrl, createdBy: req.params.id , views: 0});
+        const video = new Video({ title, description, videoUrl, thumbnailUrl, createdBy: req.user.id , views: 0});
         await video.save();
         res.status(201).send();
     }
@@ -15,12 +15,30 @@ export const addVideo = async (req, res) => {
 
 };
 
+export const deleteVideo = async(req, res)=>{
+    try{
+        const video = await Video.findById(req.params.id);
+        if(!video) return res.status(404);
+        if(req.user.id === video.createdBy){
+            await Video.findByIdAndDelete(req.params.id);
+            res.status(200).json("video has been deleted");
+        }
+        else{
+            return res.status(404);
+        }
+
+    }
+    catch(err){
+        res.status(500);
+    }
+}
+
 export const likeVideo = async(req, res)=>{
     try{
-        const {id} = req.params;
-        const {userId} = req.body;
-        const video = await Video.findById(id);
-        const isLiked = video.likes.get(userId);
+
+        const videoId = req.params.id;
+        const video = await Video.findById(videoId);
+        const isLiked = video.likes.get(req.user.id);
 
         if(isLiked){
             video.likes.delete(userId);

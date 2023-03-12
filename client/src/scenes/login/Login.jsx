@@ -2,7 +2,8 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setLogin } from '../../state';
+// import { setLogin } from '../../state';
+import { loginStart, loginFailure, setLogin } from '../../state';
 
 
 const Login = () => {
@@ -17,6 +18,9 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        dispatch(loginStart());
+
+        try{
 
         const userResponse = await fetch("http://localhost:5001/api/v1/auth/login", {
             method: 'POST',
@@ -30,25 +34,28 @@ const Login = () => {
         const loggedIn = await userResponse.json();
         
         
-
         if(loggedIn.token){
             dispatch(
                 setLogin({
-                  user: loggedIn.user,
-                  token: loggedIn.token,
+                    user: loggedIn.user,
+                    token: loggedIn.token
                 })
             );
-            console.log(loggedIn);
-            navigate('/home');
+            
+            navigate("/home");
             setInitialValuesLogin.email = '';
             setInitialValuesLogin.password = '';
+        }
+        }
+        catch(err){
+            dispatch(loginFailure());
         }
 
     }    
 
   return (
     <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
             <div>
 
             <label htmlFor="email" className='labels'>Email</label>
