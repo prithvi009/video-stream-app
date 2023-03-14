@@ -81,8 +81,6 @@ const Upload = () => {
     const [initial, setInitial] = useState({
         title: "",
         desc: "",
-        videoUrl: "",
-        thumbnailUrl: "",
     });
 
     const uploadFile = (file, urlType)=>{
@@ -125,16 +123,28 @@ const Upload = () => {
 
     const onSubmit = async(e) => {
         e.preventDefault();
-        setInitial({...initial, ...inputs});
-        
-        ;
+
+        // const p={
+        //   title: initial.title,
+        //   description: initial.desc,
+        //   videoUrl: inputs.video,
+        //   thumbnailUrl: inputs.img,
+        // }
+        const p={
+          title: initial.title,
+          description: initial.desc,
+          videoUrl: "fksdjfjsdljfl",
+          thumbnailUrl: "fjalsdkjfldjf",
+        }
+        console.log(p);
+
         const res = await fetch("http://localhost:5001/api/v1/video/", {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },
-          contebtType: "application/json",
-          body: JSON.stringify(initial),
+          contentType: "application/json",
+          body: JSON.stringify(p),
         });
-        console.log(token);
+        // console.log(token);
         const data = await res.json();
         console.log(data);
       }

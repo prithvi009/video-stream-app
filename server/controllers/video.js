@@ -3,7 +3,7 @@ import Video from '../models/Video.js';
 
 export const addVideo = async (req, res) => {
     try{
-        console.log(req.user);
+        console.log(req);
         const { title, description, videoUrl, thumbnailUrl } = req.body;
         const video = new Video({ title, description, videoUrl, thumbnailUrl, createdBy: req.user.id , views: 0});
         await video.save();
