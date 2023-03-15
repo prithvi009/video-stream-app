@@ -5,13 +5,14 @@ import Comment from '../models/Comment.js';
 export const addComment = async(req, res)=>{
 
     try{
-        const video = await Video.findById(req.params.id);
+        console.log(req);
+        const video = await Video.findById(req.body.videoId);
         if(!video) return res.status(404).json("video not found");
 
         
         const comment = new Comment({
             text: req.body.text,
-            videoId: req.params.id,
+            videoId: req.body.videoId,
             createdBy: req.user.id,
             replies: req.body.replies
         });
@@ -30,11 +31,11 @@ export const addComment = async(req, res)=>{
 export const deleteComment = async(req, res)=>{
 
     try{
-        const comment = await Comment.findById(req.params.id);
+        const comment = await Comment.findById(req.body.commentId);
         if(!comment) return res.status(404).json("comment not found");
 
         if(req.user.id === comment.createdBy ){
-            await Comment.findByIdAndDelete(req.params.id);
+            await Comment.findByIdAndDelete(req.body.commentId);
             res.status(200).json("comment deleted");
         }
 
@@ -48,11 +49,11 @@ export const deleteComment = async(req, res)=>{
 export const getComments = async(req, res)=>{
 
     try{
-        const comments = await Comment.find({videId: req.params.videoId});
+        const comments = await Comment.find({videId: req.params.commentId});
         if(!comments) return res.status(404).json("comment not found");
 
         if(req.user.id === comment.createdBy ){
-            await Comment.findByIdAndDelete(req.params.id);
+            await Comment.findByIdAndDelete(req.body.commentId);
             res.status(200).json("comment deleted");
         }
         res.status(200).json(comments);

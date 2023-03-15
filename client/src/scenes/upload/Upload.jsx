@@ -124,29 +124,22 @@ const Upload = () => {
     const onSubmit = async(e) => {
         e.preventDefault();
 
-        // const p={
-        //   title: initial.title,
-        //   description: initial.desc,
-        //   videoUrl: inputs.video,
-        //   thumbnailUrl: inputs.img,
-        // }
         const p={
           title: initial.title,
           description: initial.desc,
-          videoUrl: "fksdjfjsdljfl",
-          thumbnailUrl: "fjalsdkjfldjf",
+          videoUrl: inputs.video,
+          thumbnailUrl: inputs.img,
         }
-        console.log(p);
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDlkODJkYmNhMzYxMGRjM2RlMTY4NCIsImlhdCI6MTY3ODg5MjgyMX0.HC_UxM6VaXFxOqehVV2XOaq-ZAKJrApcLdvx0xBY8wM");
+        myHeaders.append("Content-Type", "application/json");
 
         const res = await fetch("http://localhost:5001/api/v1/video/", {
           method: "POST",
-          headers: { Authorization: `Bearer ${token}` },
-          contentType: "application/json",
+          headers: myHeaders,
           body: JSON.stringify(p),
         });
-        // console.log(token);
-        const data = await res.json();
-        console.log(data);
+        
       }
 
 

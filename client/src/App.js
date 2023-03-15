@@ -4,17 +4,27 @@ import Navbar from "./components/navbar";
 import Login from "./scenes/login/Login";
 import Home from "./scenes/home/Home";
 import {useSelector} from "react-redux";
+import styled from "styled-components";
 
 import Upload from "./scenes/upload/Upload";
 
 
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+`;
+
 function App() {
   const isAuth = Boolean(useSelector((state)=>state.authReducer.token));
   console.log(isAuth);
+  const token = useSelector((state)=> state.authReducer.token);
+  console.log(token);
   return (
-    <div className="app">
+    <Container>
       <Router>
-        <Navbar/>
+        {/* <Navbar/> */}
         <Routes>
           <Route path="/" element={<Login/>} />
           <Route path="/register" element={<Register/>}/>
@@ -23,7 +33,7 @@ function App() {
 
         </Routes>
       </Router>
-    </div>
+    </Container>
   );
 }
 

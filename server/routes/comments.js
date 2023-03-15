@@ -3,8 +3,8 @@ import { verifyToken } from "../middleware/auth.js";
 import {addComment, deleteComment, getComments} from "../controllers/comment.js"
 const router = Router();
 
-router.post("/:id", verifyToken, addComment);
-router.delete("/deleteComment/:id", verifyToken, deleteComment);
+router.post("/", verifyToken, addComment);
+router.delete("/deleteComment/", verifyToken, deleteComment);
 router.get("/:videoId", getComments);
  
 

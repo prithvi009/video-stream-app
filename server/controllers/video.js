@@ -36,7 +36,7 @@ export const deleteVideo = async(req, res)=>{
 export const likeVideo = async(req, res)=>{
     try{
 
-        const videoId = req.params.id;
+        const videoId = req.body;
         const video = await Video.findById(videoId);
         const isLiked = video.likes.get(req.user.id);
 
