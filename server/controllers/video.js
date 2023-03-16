@@ -3,7 +3,6 @@ import Video from '../models/Video.js';
 
 export const addVideo = async (req, res) => {
     try{
-        console.log(req);
         const { title, description, videoUrl, thumbnailUrl } = req.body;
         const video = new Video({ title, description, videoUrl, thumbnailUrl, createdBy: req.user.id , views: 0});
         await video.save();
@@ -30,6 +29,29 @@ export const deleteVideo = async(req, res)=>{
     }
     catch(err){
         res.status(500);
+    }
+}
+
+export const getVideos = async(req, res)=>{
+    try{
+        const videos = await Video.find();
+        res.status(200).json(videos);
+    }
+    catch(err){
+        res.status(404).json({message: err.message});
+    }
+}
+
+export const getVideo = async(req, res)=>{
+    try{
+        const videoId = req.params.id;
+        const video = await Video.findById(videoId);
+
+        res.status(200).json(video);
+
+    }
+    catch(err){
+        res.status(404).json(err.message);
     }
 }
 

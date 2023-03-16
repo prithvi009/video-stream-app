@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
 
 import {
     getStorage,
@@ -83,6 +84,7 @@ const Upload = () => {
         title: "",
         desc: "",
     });
+    const navigate = useNavigate();
 
     const uploadFile = (file, urlType)=>{
         const storage = getStorage(app);
@@ -142,7 +144,7 @@ const Upload = () => {
         });
 
         if(res){
-          Navigate('/home')
+          navigate('/home');
         }
         
         
@@ -153,7 +155,7 @@ const Upload = () => {
     <>
         <Container>
       <Wrapper>
-        <Close >X</Close>
+        <Close onClick={()=>navigate('/home')} >X</Close>
         <Title>Upload a New Video</Title>
         <Label>Video:</Label>
         {videoPerc > 0 ? (

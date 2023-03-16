@@ -2,8 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-// import { setLogin } from '../../state';
-import { loginStart, loginFailure, setLogin } from '../../state';
+import { loginStart, loginFailure, setLogin } from '../../state/authSlice';
 import styled from "styled-components";
 import loadingGif from '../../assets/loading.gif';
 
@@ -118,15 +117,16 @@ const Login = () => {
             setLoading(false);
             const loggedIn = await userResponse.json();
             
-            if(loggedIn.token){
+            
+            if(loggedIn){
                 dispatch(
                     setLogin({
                         user: loggedIn.user,
                         token: loggedIn.token
                     })
                 );
-                
-                navigate("/home");
+
+                navigate('/home')
                 setInitialValuesLogin.email = '';
                 setInitialValuesLogin.password = '';
             }

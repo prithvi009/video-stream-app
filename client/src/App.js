@@ -17,8 +17,8 @@ const Container = styled.div`
 `;
 
 function App() {
-  const isAuth = Boolean(useSelector((state)=>state.authReducer.token));
-  console.log(isAuth);
+  
+  const isAuth = useSelector(state => state.user.token);
   return (
     <Container>
       <Router>
