@@ -28,7 +28,7 @@ const Form = styled.form`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    width: 60%;
     border-radius: 10px;
     margin: 0 auto;
 `;
@@ -72,6 +72,7 @@ const Button = styled.button`
     border-radius: 5px;
     height: 40px;
     margin-bottom: 10px;
+    cursor: pointer;
 
 `;
 

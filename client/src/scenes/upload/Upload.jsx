@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from "styled-components";
+
 import {
     getStorage,
     ref,
@@ -9,7 +10,8 @@ import {
     getDownloadURL,
 } from "firebase/storage";
 import app from '../../firebase';
-import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -77,7 +79,6 @@ const Upload = () => {
     const [imgPerc, setImgPerc] = useState(0);
     const [videoPerc, setVideoPerc] = useState(0);
     const [inputs, setInputs] = useState({});
-    const token = useSelector((state)=> state.authReducer.token);
     const [initial, setInitial] = useState({
         title: "",
         desc: "",
@@ -139,6 +140,11 @@ const Upload = () => {
           headers: myHeaders,
           body: JSON.stringify(p),
         });
+
+        if(res){
+          Navigate('/home')
+        }
+        
         
       }
 

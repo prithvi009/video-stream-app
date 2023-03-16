@@ -20,7 +20,7 @@ const Form = styled.form`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    width: 60%;
     border-radius: 10px;
     margin: 0 auto;
 `;

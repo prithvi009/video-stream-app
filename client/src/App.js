@@ -1,6 +1,6 @@
 import Register from "./scenes/register/Register";
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 import Login from "./scenes/login/Login";
 import Home from "./scenes/home/Home";
 import {useSelector} from "react-redux";
@@ -19,8 +19,6 @@ const Container = styled.div`
 function App() {
   const isAuth = Boolean(useSelector((state)=>state.authReducer.token));
   console.log(isAuth);
-  const token = useSelector((state)=> state.authReducer.token);
-  console.log(token);
   return (
     <Container>
       <Router>
