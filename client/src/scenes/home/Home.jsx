@@ -11,6 +11,8 @@ const Homes = styled.div`
   width: 90%;
   height: 100%;
   margin: auto;
+  display: flex;
+  flex-wrap: wrap;
 `
 
 const Home = () => {
@@ -23,7 +25,7 @@ const Home = () => {
   
   useEffect(()=>{
     const fetchVideos = async()=>{
-      const res = await fetch("http://localhost:5001/api/v1/video/getVideos", {
+      const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/v1/video/getVideos`, {
         method: 'GET',
         headers:{
           Authorization: `Bearer ${token}`

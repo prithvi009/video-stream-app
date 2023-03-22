@@ -67,7 +67,7 @@ const Video = () => {
           fetchStart();
           try{
   
-              const videoRes = await fetch(`http://localhost:5001/api/v1/video/${path}`,{
+              const videoRes = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/v1/video/${path}`,{
                   method: 'GET',
                   headers:{
                       Authorization: `Bearer ${token}`

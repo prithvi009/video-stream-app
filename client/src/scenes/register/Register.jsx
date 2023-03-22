@@ -88,7 +88,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        const userResponse = await fetch("http://localhost:5001/api/v1/auth/register", {
+        const userResponse = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/v1/auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

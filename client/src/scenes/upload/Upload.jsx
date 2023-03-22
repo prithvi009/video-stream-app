@@ -136,7 +136,7 @@ const Upload = () => {
         myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDlkODJkYmNhMzYxMGRjM2RlMTY4NCIsImlhdCI6MTY3ODg5MjgyMX0.HC_UxM6VaXFxOqehVV2XOaq-ZAKJrApcLdvx0xBY8wM");
         myHeaders.append("Content-Type", "application/json");
 
-        const res = await fetch("http://localhost:5001/api/v1/video/", {
+        const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/v1/video/`, {
           method: "POST",
           headers: myHeaders,
           body: JSON.stringify(p),

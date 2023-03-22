@@ -106,7 +106,7 @@ const Login = () => {
 
         try{
 
-            const userResponse = await fetch("https://video-stream.onrender.com/api/v1/auth/login", {
+            const userResponse = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/v1/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
