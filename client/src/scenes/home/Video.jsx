@@ -63,8 +63,8 @@ const Video = () => {
 
 
     useEffect(()=>{
+      fetchStart();
       const fetchData = async () => {
-          fetchStart();
           try{
   
               const videoRes = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/v1/video/${path}`,{
