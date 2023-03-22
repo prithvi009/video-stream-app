@@ -48,14 +48,6 @@ const FormContainer = styled.div`
     align-items: center;
 `;
 
-const Contains = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin: 10px auto;
-`;
 
 const Button = styled.button`
     padding: 10px;

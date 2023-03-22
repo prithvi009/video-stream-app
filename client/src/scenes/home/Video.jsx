@@ -61,33 +61,32 @@ const Video = () => {
     const video = useSelector((state)=> state.video.currentVideo);
     const path = useLocation().pathname.split("/")[2];
 
-    const fetchData = async () => {
-        try{
-
-            const videoRes = await fetch(`http://localhost:5001/api/v1/video/${path}`,{
-                method: 'GET',
-                headers:{
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            const videoData = await videoRes.json();
-            dispatch(
-                fetchSuccess(videoData)
-            );
-
-
-        }
-        catch(error){
-            fetchFailure();
-            console.log(error)
-        }
-    }
-
 
     useEffect(()=>{
-        fetchStart();
-        fetchData();
-    }, [path]);
+      const fetchData = async () => {
+          fetchStart();
+          try{
+  
+              const videoRes = await fetch(`http://localhost:5001/api/v1/video/${path}`,{
+                  method: 'GET',
+                  headers:{
+                      Authorization: `Bearer ${token}`
+                  }
+              })
+              const videoData = await videoRes.json();
+              dispatch(
+                  fetchSuccess(videoData)
+              );
+  
+  
+          }
+          catch(error){
+              fetchFailure();
+              console.log(error)
+          }
+      }
+      fetchData();
+    }, [path, token, dispatch]);
 
 
 

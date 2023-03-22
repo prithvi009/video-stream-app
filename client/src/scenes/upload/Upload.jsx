@@ -11,7 +11,6 @@ import {
     getDownloadURL,
 } from "firebase/storage";
 import app from '../../firebase';
-import { Navigate } from 'react-router-dom';
 
 const Container = styled.div`
   width: 100%;
