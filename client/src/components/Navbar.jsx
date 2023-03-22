@@ -1,9 +1,11 @@
 import React from 'react'
 
 import styled from 'styled-components'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
+
 import { Link } from 'react-router-dom';
+import { setLogout } from '../state/authSlice';
 
 const Nav = styled.nav`
   width: 100%;
@@ -31,12 +33,14 @@ const Button = styled.button`
   background-color: rgba(555, 255, 255, 0.15);
   color: black;
   cursor: pointer;
+  margin: 0 30px;
 `
 
 
 const Navbar = () => {
   const isAuth = Boolean(useSelector(state => state.user.token));
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <Nav className='navbar'>
     {
@@ -45,7 +49,12 @@ const Navbar = () => {
             <Link to='/home' style={{ textDecoration: 'none' , color: 'black'} }>
             <h1>Logo</h1>
             </Link>
-            <Button onClick={()=> navigate('/upload-video') }>upload video</Button>
+            <div>
+              <Button onClick={()=> navigate('/upload-video') }>upload video</Button>
+              <Button onClick={()=> {
+                dispatch(setLogout())
+              } }>logOut</Button>
+            </div>
         </Navs>
         ) : (
         <>
