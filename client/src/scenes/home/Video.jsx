@@ -5,18 +5,55 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStart, fetchSuccess, fetchFailure } from '../../state/videoSlice';
 import { useState } from 'react';
+import { format } from "timeago.js";
+import {AiOutlineLike, AiOutlineDislike} from "react-icons/ai";
+import './video.css'
+
 
 const Container = styled.div`
   display: flex;
   gap: 24px;
 `;
+const Content = styled.div`
+  flex: 5;
+`;
 
+const VideoWrapper = styled.div``;
 
 const VideoFrame = styled.video`
-  max-height: 720px;
+  max-height: 85vh;
   width: 100%;
   object-fit: cover;
 `;
+
+const Title = styled.h1`
+  font-size: 18px;
+  font-weight: 400;
+  
+  margin: 15px 20px;
+   
+`;
+
+
+const Details = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 20px
+`;
+
+const Info = styled.span`
+
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  gap: 20px;
+
+`;
+
+
+
 
 
 const Video = () => {
@@ -59,7 +96,21 @@ const Video = () => {
 
   return (
     <Container>
-        <VideoFrame src={video.videoUrl} controls />
+      <Content>
+        <VideoWrapper>
+          <VideoFrame src={video.videoUrl} controls />
+        </VideoWrapper>
+        <Title>{video.title}</Title>
+        <Details>
+            <Info>
+                views • {format(video.createdAt)}
+            </Info>
+            <Buttons>
+              <AiOutlineLike className='like'/>
+              <AiOutlineDislike className='dislike'/>
+            </Buttons>
+        </Details>
+        </Content>
     </Container>
   )
 }

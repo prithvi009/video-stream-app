@@ -20,7 +20,8 @@ const videoSlice = createSlice({
           fetchFailure: (state) => {
             state.loading = false;
             state.error = true;
-        }
+        },
+        
     }
 });
 

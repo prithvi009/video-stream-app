@@ -12,18 +12,19 @@ import Upload from "./scenes/upload/Upload";
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   margin: 0;
   padding: 0;
+  background-color: aliceblue;
 `;
 
 function App() {
   
-  const isAuth = useSelector(state => state.user.token);
+  const isAuth = Boolean(useSelector(state => state.user.token));
   return (
     <Container>
       <Router>
-        {/* <Navbar/> */}
+        <Navbar/>
         <Routes>
           <Route path="/" element={<Login/>} />
           <Route path="/register" element={<Register/>}/>

@@ -34,6 +34,7 @@ const Contains = styled.div`
 const H1 = styled.h3`
     font-size: 1.1rem;
     font-weight: 600;
+    text-decoration-line: none;
 `
 
 const Section = styled.div`
@@ -64,7 +65,7 @@ const Like = styled.div`
 
 const Cards = ({video}) => {
   return (
-    <Link to={`/video/${video._id}`}>
+    <Link to={`/video/${video._id}`} style={{ textDecoration: 'none' , color: 'black'} }>
         <Container> 
             <Img src={video.thumbnailUrl} alt="Video thumbnail" />
             <Contains>

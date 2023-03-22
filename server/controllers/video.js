@@ -58,7 +58,7 @@ export const getVideo = async(req, res)=>{
 export const likeVideo = async(req, res)=>{
     try{
 
-        const videoId = req.body;
+        const videoId = req.params.id;
         const video = await Video.findById(videoId);
         const isLiked = video.likes.get(req.user.id);
 
@@ -81,3 +81,15 @@ export const likeVideo = async(req, res)=>{
         res.status(500).json({message : error.message});
     }
 }
+
+export const addView = async (req, res, next) => {
+    try {
+      await Video.findByIdAndUpdate(req.params.id, {
+        $inc: { views: 1 },
+      });
+      res.status(200).json("The view has been increased.");
+    } catch (err) {
+      next(err);
+    }
+  };
+  
