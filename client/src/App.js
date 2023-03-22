@@ -19,7 +19,6 @@ const Container = styled.div`
 `;
 
 function App() {
-  console.log(process.env);
   
   const isAuth = Boolean(useSelector(state => state.user.token));
   return (
