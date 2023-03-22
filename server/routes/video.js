@@ -1,7 +1,7 @@
 
 import { Router } from 'express';
 import { verifyToken } from '../middleware/auth.js';
-import { addVideo, deleteVideo, getVideos, getVideo, likeVideo, addView } from '../controllers/Video.js';
+import { addVideo, deleteVideo, getVideos, getVideo, likeVideo, addView } from '../controllers/video.js';
 
 const router = Router();
 
