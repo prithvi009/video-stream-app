@@ -31,7 +31,7 @@ function App() {
           <Route path="/home" element={isAuth ? <Home/> : <Navigate to='/'/> }/>
           <Route path="/upload-video" element={isAuth ?  <Upload/> : <Navigate to='/'/> }/>
           <Route path="video">
-            <Route path=":id" element={<Video />} />
+            <Route path=":id" element={isAuth ? <Video />: <Navigate to='/'/>} />
           </Route>
 
         </Routes>

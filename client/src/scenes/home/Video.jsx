@@ -4,8 +4,7 @@ import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStart, fetchSuccess, fetchFailure } from '../../state/videoSlice';
-import { useState } from 'react';
-import { format } from "timeago.js";
+
 import {AiOutlineLike, AiOutlineDislike} from "react-icons/ai";
 import './video.css'
 
@@ -60,7 +59,6 @@ const Video = () => {
     const dispatch = useDispatch();
     const token = useSelector((state)=> state.user.token);
     const video = useSelector((state)=> state.video.currentVideo);
-    const [videoName, setVideoName] = useState('');
     const path = useLocation().pathname.split("/")[2];
 
     const fetchData = async () => {
@@ -73,7 +71,6 @@ const Video = () => {
                 }
             })
             const videoData = await videoRes.json();
-            setVideoName(videoData);
             dispatch(
                 fetchSuccess(videoData)
             );
@@ -103,7 +100,7 @@ const Video = () => {
         <Title>{video.title}</Title>
         <Details>
             <Info>
-                views • {format(video.createdAt)}
+                views • 
             </Info>
             <Buttons>
               <AiOutlineLike className='like'/>
