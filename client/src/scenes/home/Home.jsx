@@ -20,20 +20,21 @@ const Home = () => {
   const token = useSelector((state)=> state.user.token);
   
 
-  const fetchVideos = async()=>{
-    const res = await fetch("http://localhost:5001/api/v1/video/getVideos", {
-      method: 'GET',
-      headers:{
-        Authorization: `Bearer ${token}`
-      }
-    })
-    const data = await res.json();
-    setVideos(data);
-    
-  }
+  
   useEffect(()=>{
+    const fetchVideos = async()=>{
+      const res = await fetch("http://localhost:5001/api/v1/video/getVideos", {
+        method: 'GET',
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      })
+      const data = await res.json();
+      setVideos(data);
+      
+    }
     fetchVideos();
-  }, []);
+  }, [token, setVideos]);
 
 
 
