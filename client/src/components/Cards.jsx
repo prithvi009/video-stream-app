@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import images from '../assets/images.jpeg';
+import { Link } from 'react-router-dom';
+
+
 
 const Container = styled.div`
     width: 300px;
@@ -31,8 +34,6 @@ const Contains = styled.div`
 const H1 = styled.h3`
     font-size: 1.1rem;
     font-weight: 600;
-    
-
 `
 
 const Section = styled.div`
@@ -61,19 +62,22 @@ const Like = styled.div`
 `
 
 
-const Cards = () => {
+const Cards = ({video}) => {
   return (
-    <Container>
-        <Img src={images} alt="Video thumbnail" />
-        <Contains>
-            <H1>my video is best</H1>
-            <Section>
-                <Like>10</Like>
-                <Comment>Comments</Comment>
-            </Section>
-        </Contains>
+    <Link to={`/video/${video._id}`}>
+        <Container> 
+            <Img src={video.thumbnailUrl} alt="Video thumbnail" />
+            <Contains>
+                <H1>{video.title}</H1>
+                <p>{video.description}</p>
+                <Section>
+                    <Like>10</Like>
+                    <Comment>Comments</Comment>
+                </Section>
+            </Contains>
 
-    </Container>
+        </Container>
+    </Link>
   )
 }
 
