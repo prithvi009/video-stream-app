@@ -74,9 +74,13 @@ const Video = () => {
                   }
               })
               const videoData = await videoRes.json();
-              dispatch(
-                  fetchSuccess(videoData)
-              );
+
+              if(videoData){
+
+                dispatch(
+                    fetchSuccess(videoData)
+                );
+              }
   
   
           }
