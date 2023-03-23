@@ -90,7 +90,7 @@ const Video = () => {
           }
       }
       fetchData();
-    }, [path, token, dispatch]);
+    });
 
 
 
